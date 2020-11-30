@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, setState } from 'react'
 import styled from "styled-components";
 
 export class ErrorBoundary extends Component {
@@ -19,12 +19,10 @@ export class ErrorBoundary extends Component {
 
   render() {
     if (this.state.hasError) {
-      this.state = {
-        hasError: false
-        // reset error state so user can continue
+
+        return (<Error>oops... nothing found</Error>) 
       }
-      return <Error>Sorry... that search had a problem</Error>
-    }
+      
     return this.props.children;
   }
 }
