@@ -1,4 +1,4 @@
-import React, { Component, setState } from 'react'
+import React, { Component } from 'react'
 import styled from "styled-components";
 
 export class ErrorBoundary extends Component {
