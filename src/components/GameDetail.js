@@ -14,6 +14,7 @@ import xbox from "../img/xbox.svg";
 import nintendo from "../img/nintendo.svg";
 import apple from "../img/apple.svg";
 import gamepad from "../img/gamepad.svg";
+import close from "../img/close.svg";
 //Star Images
 import starEmpty from "../img/star-empty.png";
 import starFull from "../img/star-full.png";
@@ -54,13 +55,15 @@ const GameDetail = ({ pathId }) => {
   };
 
   // Exit Detail (get scrolling back)
+  // either by clicking shadow on the sides,  or the close img
   const history = useHistory();
   const exitDetailHandler = (e) => {
     const element = e.target;
-    if(element.classList.contains('shadow')){
+    if(element.classList.contains('closer') || 
+    element.classList.contains('shadow')){
       document.body.style.overflow= 'auto';
       history.push("/");
-    }
+    } 
   };
 
   // Data
@@ -71,6 +74,14 @@ const GameDetail = ({ pathId }) => {
       {!isLoading && (
       <CardShadow className="shadow" onClick={exitDetailHandler}>
         <Detail layoutId={pathId}>
+          <CloseButton>
+            <img
+            className="closer"
+            onClick={exitDetailHandler}
+            src={close} 
+            alt="close button"
+            ></img>
+          </CloseButton>
           <Stats>
             <div className="rating">
               <motion.h3 layoutId={`title ${pathId}`}>{game.name}</motion.h3>
@@ -116,6 +127,7 @@ const GameDetail = ({ pathId }) => {
   );
 };
 
+
 const CardShadow = styled(motion.div)`
   width: 100%;
   min-height: 100vh;
@@ -144,13 +156,27 @@ const Detail = styled(motion.div)`
   position: absolute;
   left: 10%;
   color: black;
-  z-index:10// scroll bug fix (bottom layer leak)
+  z-index:10; // scroll bug fix (bottom layer leak)
   img{
     width: 100%;
   }
 
   @media only screen and (max-width: 650px){
-    padding: 1.5rem 1rem;
+    width: 100vw;
+    margin: 0;
+    left: 0;
+    right: 0;
+    padding: 5%;
+  }
+`;
+
+const CloseButton = styled(motion.div)`
+  img{
+    width: 2em;
+    height: 2em;
+    position: fixed;
+    top: 100px;
+    right: 50px;
   }
 `;
 
@@ -172,13 +198,10 @@ const Stats = styled(motion.div)`
     .rating :first-child {
       margin-bottom: 1.5rem;
     }
-
-    @media only screen and (max-width: 1020px){
-      img {
+    img {
         width: 1.5rem;
         height: 1.5rem;
       }
-    }
   }
 
 `;

@@ -12,9 +12,6 @@ import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import { fadeIn } from "../animations";
 
 
-import ErrorBoundary from "../components/ErrorBoundary";
-
-
 const Home = () => {
 
   // Current Location - trick to extract id from url
@@ -42,10 +39,9 @@ const Home = () => {
         <AnimatePresence>
           {pathID && <GameDetail pathId={pathID} />}
         </AnimatePresence>
-
-        <ErrorBoundary>
         {searched.length ? (
         <div className="searched">
+        
           <h2>Search Results</h2>
           <Games>
             {searched.map(game => (
@@ -60,8 +56,6 @@ const Home = () => {
           </Games>
         </div>
         ) : ""}
-        </ErrorBoundary>
-
         <h2>Upcoming Games</h2>
         <Games>
           {upcoming.map(game => (
@@ -103,6 +97,7 @@ const Home = () => {
   );
 };
 
+
 const GameList = styled(motion.div)`
   padding: 0rem 5rem 5rem 5rem;
   h2{
@@ -119,6 +114,7 @@ const GameList = styled(motion.div)`
   }
 
 `;
+
 
 const Games = styled(motion.div)`
   min-height: 80vh;
