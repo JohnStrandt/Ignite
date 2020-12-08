@@ -39,9 +39,8 @@ const Home = () => {
         <AnimatePresence>
           {pathID && <GameDetail pathId={pathID} />}
         </AnimatePresence>
-        {searched.length ? (
+        {searched.length ? (// show only when exists
         <div className="searched">
-        
           <h2>Search Results</h2>
           <Games>
             {searched.map(game => (
