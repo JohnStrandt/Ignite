@@ -3,7 +3,7 @@ const initialState = {
   screen: {results: []}, 
   isLoading: true, 
 };
-// Setting an initial state of empty arrays solves issue of 
+// Setting an initial state of empty arrays solves issue of
 // map not being able to read property of undefined
 // as it tries to map before the api info is fetched.
 // but there is another solution using redux where
